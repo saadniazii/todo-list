@@ -5,10 +5,15 @@ module.exports = {
   mode: "development",
   entry: "./src/index.js",
   output: {
-    filename: "main.js",
+    filename: "[id].js",
     path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
   },
   devtool: "inline-source-map",
+
+  devServer: {
+    static: "./dist",
+  },
 
   plugins: [
     new HtmlWebpackPlugin({
@@ -31,5 +36,9 @@ module.exports = {
         type: "asset/resource",
       },
     ],
+  },
+
+  optimization: {
+    runtimeChunk: "single",
   },
 };
