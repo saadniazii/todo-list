@@ -27,3 +27,23 @@ const TodoFactory = (title, description, dueDate, isCompleted) => {
     setIsCompleted,
   };
 };
+
+const ProjectFactory = (todos) => {
+  const myProjects = [...todos];
+
+  const addTodos = () => {};
+
+  const editTodos = () => {};
+
+  const deleteTodo = () => {};
+
+  const completedTodos = () => {};
+
+  return {
+    myProjects,
+    addTodos,
+    editTodos,
+    deleteTodo,
+    completedTodos,
+  };
+};
