@@ -11,11 +11,21 @@ const TodoFactory = (title, description, dueDate, priority, isCompleted) => {
   const getPriority = () => _priority;
   const getIsCompleted = () => _isCompleted;
 
-  const setTitle = () => {};
-  const setDescription = () => {};
-  const setDueDate = () => {};
-  const setPriority = () => {};
-  const setIsCompleted = () => {};
+  const setTitle = (newTitle) => {
+    return (_title = newTitle);
+  };
+  const setDescription = (newDescription) => {
+    return (_description = newDescription);
+  };
+  const setDueDate = (newDueDate) => {
+    return (_dueDate = newDueDate);
+  };
+  const setPriority = (newPriority) => {
+    return (_priority = newPriority);
+  };
+  const setIsCompleted = (newIsCompleted) => {
+    return (_isCompleted = newIsCompleted);
+  };
 
   return {
     getTitle,
@@ -32,24 +42,31 @@ const TodoFactory = (title, description, dueDate, priority, isCompleted) => {
 };
 
 const ProjectFactory = (projectName) => {
-  const myProject = [];
+  let myProject = [];
 
   const addTodos = (...todos) => {
     myProject.push(...todos);
   };
 
-  const editTodos = () => {};
+  const editTodos = (todoIndex) => {
+    myProject[todoIndex].setTitle("NEW EDIT TODOS");
+    myProject[todoIndex].setDescription("NEW EDIT DESCRIPTION");
+    myProject[todoIndex].setDueDate("NEW EDIT DATE");
+    myProject[todoIndex].setPriority("high");
+    return myProject[todoIndex];
+  };
 
-  const deleteTodo = () => {};
-
-  const completedTodos = () => {};
+  const deleteTodo = (todoIndex) => {
+    myProject.splice(todoIndex, 1);
+    console.log(myProject);
+    return myProject;
+  };
 
   return {
     [projectName]: myProject,
     addTodos,
     editTodos,
     deleteTodo,
-    completedTodos,
   };
 };
 
@@ -58,9 +75,10 @@ const todo1 = TodoFactory(
   "have sex urgently",
   "tomorrow",
   "high",
-  "true"
+  false
 );
 
 const projectOne = ProjectFactory("Project One");
-projectOne.addTodos(todo1, todo1, todo1);
-console.log(projectOne);
+projectOne.addTodos(todo1);
+projectOne.deleteTodo(0);
+// console.log(projectOne[0].getTitle());
