@@ -43,7 +43,6 @@ const TodoFactory = (title, description, dueDate, priority, isCompleted) => {
 
 const ProjectFactory = (projectName) => {
   let myProject = [];
-  let completedTodosArray = [];
 
   const addTodos = (...todos) => {
     myProject.push(...todos);
@@ -64,6 +63,10 @@ const ProjectFactory = (projectName) => {
     return myProject;
   };
 
+  const allTodos = () => {
+    return myProject.map((item) => item);
+  };
+
   const completedTodos = () => {
     myProject = myProject.filter((item) => {
       return item.getIsCompleted() !== true;
@@ -71,7 +74,9 @@ const ProjectFactory = (projectName) => {
   };
 
   return {
-    [projectName]: myProject,
+    name: projectName,
+    allTodos,
+    // [projectName]: myProject,
     addTodos,
     editTodos,
     deleteTodo,
@@ -86,9 +91,15 @@ const SidebarProjectFactory = () => {
     sidebarProjectsArray.push(...projects);
   };
 
+  const deleteProject = (projectIndex) => {
+    sidebarProjectsArray.splice(projectIndex, 1);
+    return sidebarProjectsArray;
+  };
+
   return {
     sidebarProjectsArray,
     addProjects,
+    deleteProject,
   };
 };
 
@@ -121,4 +132,4 @@ projectOne.addTodos(todo1, todo2, todo3); //addition of the todo objects inside 
 
 const sidebar = SidebarProjectFactory(); //creation of the sidebar project
 sidebar.addProjects(projectOne); //addition of the project in the sidebar for me to loop over
-console.log(sidebar.sidebarProjectsArray); //the array in which the projects are being stored.
+console.log(sidebar.sidebarProjectsArray.map((item) => item.name)); //the array in which the projects are being stored.
