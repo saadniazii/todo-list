@@ -122,3 +122,33 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+/* CSS Reset End */
+.container {
+  border: 3px solid red;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: repeat(auto-fit, minmax(100px, 120px));
+}
+
+.header {
+  border: 3px solid red;
+  grid-column: 2 / -1;
+}
+
+.sidebar {
+  grid-column: 1 / 2;
+  grid-row: 1 / 10;
+  border: 3px solid cornflowerblue;
+}
+
+.main-body {
+  border: 3px solid salmon;
+  grid-row: 2 / 6;
+}
+
+.footer {
+  grid-row: 6/10;
+  border: 3px solid green;
+}

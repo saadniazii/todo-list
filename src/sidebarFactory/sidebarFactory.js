@@ -1,7 +1,9 @@
 const SidebarProjectFactory = () => {
   let sidebarProjectsArray = [];
-
+  console.log("inside sidebar project factory");
+  
   const addProjects = (...projects) => {
+    console.log("projects: inside sidebar", projects);
     sidebarProjectsArray.push(...projects);
   };
 
