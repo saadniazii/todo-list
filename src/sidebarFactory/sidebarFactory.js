@@ -1,10 +1,9 @@
 const SidebarProjectFactory = () => {
   let sidebarProjectsArray = [];
-  console.log("inside sidebar project factory");
-  
+
   const addProjects = (...projects) => {
-    console.log("projects: inside sidebar", projects);
     sidebarProjectsArray.push(...projects);
+    console.log("sidebarProjectsArray", sidebarProjectsArray.length);
   };
 
   const deleteProject = (projectIndex) => {
@@ -12,10 +11,15 @@ const SidebarProjectFactory = () => {
     return sidebarProjectsArray;
   };
 
+  const allProjects = () => {
+    return sidebarProjectsArray.map((item) => item);
+  };
+
   return {
     sidebarProjectsArray,
     addProjects,
     deleteProject,
+    allProjects,
   };
 };
 

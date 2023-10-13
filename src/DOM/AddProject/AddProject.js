@@ -4,7 +4,7 @@ import SidebarProjectFactory from "../../sidebarFactory/sidebarFactory";
 const AddProject = () => {
   const getAddProjectBtnValue = document.querySelector("#addProject").value;
 
-  const project = ProjectFactory(getAddProjectBtnValue);
+  let project = ProjectFactory(getAddProjectBtnValue);
   let sidebar = SidebarProjectFactory();
   sidebar.addProjects(project);
 

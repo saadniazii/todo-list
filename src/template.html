@@ -18,9 +18,32 @@
           name="addProject"
           for="addProject"
         />
-        <button class="addProjectBtn">Add Project</button>
+        <button class="addProjectBtn">Add Projects</button>
       </div>
-      <div class="main-body">Main Body</div>
+      <div class="main-body">
+        <input
+          type="text"
+          placeholder="Title"
+          id="title"
+          name="title"
+          for="title"
+        />
+        <input
+          type="date"
+          placeholder="23/09/2023"
+          id="date"
+          name="date"
+          for="date"
+        />
+        <select name="priority" id="priority">
+          <option value="">--Please choose Priority Level--</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <textarea placeholder="write description about the todo"></textarea>
+        <button class="addTodoBtn">Add Todo</button>
+      </div>
       <div class="footer">Footer</div>
     </div>
   </body>

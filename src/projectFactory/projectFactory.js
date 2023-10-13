@@ -3,6 +3,7 @@ const ProjectFactory = (projectName) => {
 
   const addTodos = (...todos) => {
     myProject.push(...todos);
+    console.log("myProject", myProject);
   };
 
   const editTodos = (todoIndex) => {

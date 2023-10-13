@@ -152,3 +152,8 @@ table {
   grid-row: 6/10;
   border: 3px solid green;
 }
+
+.add-sidebar-projects {
+  border: 3px solid red;
+  margin-bottom: 15px;
+}
