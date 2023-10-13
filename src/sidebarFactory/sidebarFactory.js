@@ -23,4 +23,4 @@ const SidebarProjectFactory = () => {
   };
 };
 
-export default SidebarProjectFactory;
+export const sidebar = SidebarProjectFactory();

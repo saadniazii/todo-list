@@ -1,22 +1,27 @@
+import { sidebar } from "../../sidebarFactory/sidebarFactory";
 import createElement from "../../utils/createElement";
-import AddProject from "../AddProject/AddProject";
 
 const displayProjectsInSidebar = () => {
-  const addProject = AddProject();
-  const allSidebarProjects = addProject.sidebar.allProjects();
+  const allSidebarProjects = sidebar.allProjects();
+  //   console.log(allSidebarProjects);
   renderProjects(allSidebarProjects);
 };
 
 const renderProjects = (sidebarProjects) => {
   const sidebar = document.querySelector(".sidebar");
-  sidebarProjects.map((item, index) => {
-    const addSidebarProjects = createElement("div", "add-sidebar-projects");
-    const span = createElement("span");
-    span.textContent = item.name;
-    addSidebarProjects.appendChild(span);
-    addSidebarProjects.dataset.id = index;
-    getAllProjects(addSidebarProjects);
-    sidebar.appendChild(addSidebarProjects);
+  console.log(sidebarProjects);
+  sidebarProjects.forEach((item, index) => {
+    const existingProject = sidebar.querySelector(`[data-id="${index}"]`);
+
+    if (!existingProject) {
+      const addSidebarProjects = createElement("div", "add-sidebar-projects");
+      const span = createElement("span");
+      span.textContent = item.name;
+      addSidebarProjects.appendChild(span);
+      addSidebarProjects.dataset.id = index;
+      getAllProjects(addSidebarProjects);
+      sidebar.appendChild(addSidebarProjects);
+    }
   });
 };
 

@@ -1,16 +1,14 @@
 import ProjectFactory from "../../projectFactory/projectFactory";
-import SidebarProjectFactory from "../../sidebarFactory/sidebarFactory";
+import { sidebar } from "../../sidebarFactory/sidebarFactory";
 
 const AddProject = () => {
   const getAddProjectBtnValue = document.querySelector("#addProject").value;
 
   let project = ProjectFactory(getAddProjectBtnValue);
-  let sidebar = SidebarProjectFactory();
   sidebar.addProjects(project);
 
   return {
     project,
-    sidebar,
   };
 };
 
