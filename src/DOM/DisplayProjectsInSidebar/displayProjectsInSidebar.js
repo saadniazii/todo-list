@@ -3,13 +3,11 @@ import createElement from "../../utils/createElement";
 
 const displayProjectsInSidebar = () => {
   const allSidebarProjects = sidebar.allProjects();
-  //   console.log(allSidebarProjects);
   renderProjects(allSidebarProjects);
 };
 
 const renderProjects = (sidebarProjects) => {
   const sidebar = document.querySelector(".sidebar");
-  console.log(sidebarProjects);
   sidebarProjects.forEach((item, index) => {
     const existingProject = sidebar.querySelector(`[data-id="${index}"]`);
 

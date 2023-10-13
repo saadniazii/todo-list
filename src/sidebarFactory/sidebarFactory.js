@@ -1,22 +1,21 @@
 const SidebarProjectFactory = () => {
-  let sidebarProjectsArray = [];
+  let projectList = [];
 
   const addProjects = (...projects) => {
-    sidebarProjectsArray.push(...projects);
-    console.log("sidebarProjectsArray", sidebarProjectsArray.length);
+    projectList.push(...projects);
   };
 
   const deleteProject = (projectIndex) => {
     sidebarProjectsArray.splice(projectIndex, 1);
-    return sidebarProjectsArray;
+    return projectList;
   };
 
   const allProjects = () => {
-    return sidebarProjectsArray.map((item) => item);
+    return projectList.map((item) => item);
   };
 
   return {
-    sidebarProjectsArray,
+    projectList,
     addProjects,
     deleteProject,
     allProjects,
