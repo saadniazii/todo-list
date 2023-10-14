@@ -6,7 +6,7 @@ const SidebarProjectFactory = () => {
   };
 
   const deleteProject = (projectIndex) => {
-    sidebarProjectsArray.splice(projectIndex, 1);
+    projectList.splice(projectIndex, 1);
     return projectList;
   };
 

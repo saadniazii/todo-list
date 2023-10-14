@@ -3,7 +3,7 @@ const ProjectFactory = (projectName) => {
 
   const addTodos = (...todos) => {
     myProject.push(...todos);
-    console.log("myProject", myProject);
+    console.log(myProject);
   };
 
   const editTodos = (todoIndex) => {
@@ -17,7 +17,6 @@ const ProjectFactory = (projectName) => {
 
   const deleteTodo = (todoIndex) => {
     myProject.splice(todoIndex, 1);
-    console.log(myProject);
     return myProject;
   };
 

@@ -1,5 +1,6 @@
 import { sidebar } from "../../sidebarFactory/sidebarFactory";
 import createElement from "../../utils/createElement";
+import Todos from "../Todos/Todos";
 
 const displayProjectsInSidebar = () => {
   const allSidebarProjects = sidebar.allProjects();
@@ -7,9 +8,9 @@ const displayProjectsInSidebar = () => {
 };
 
 const renderProjects = (sidebarProjects) => {
-  const sidebar = document.querySelector(".sidebar");
+  const sidebarHTML = document.querySelector(".sidebar");
   sidebarProjects.forEach((item, index) => {
-    const existingProject = sidebar.querySelector(`[data-id="${index}"]`);
+    const existingProject = sidebarHTML.querySelector(`[data-id="${index}"]`);
 
     if (!existingProject) {
       const addSidebarProjects = createElement("div", "add-sidebar-projects");
@@ -17,14 +18,10 @@ const renderProjects = (sidebarProjects) => {
       span.textContent = item.name;
       addSidebarProjects.appendChild(span);
       addSidebarProjects.dataset.id = index;
-      getAllProjects(addSidebarProjects);
-      sidebar.appendChild(addSidebarProjects);
+      addSidebarProjects.addEventListener("click", () => Todos(index));
+      sidebarHTML.appendChild(addSidebarProjects);
     }
   });
-};
-
-const getAllProjects = (element) => {
-  element.addEventListener("click", (e) => console.log(e.target.dataset.id));
 };
 
 export default displayProjectsInSidebar;
