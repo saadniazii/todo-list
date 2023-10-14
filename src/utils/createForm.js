@@ -16,7 +16,6 @@ const createForm = () => {
   todoForm.appendChild(descriptionTextarea);
 
   const addButton = document.createElement("button");
-  const myProjectData = AddProject();
 
   addButton.className = "addTodoBtn";
   addButton.textContent = "Add Todo";
@@ -27,9 +26,9 @@ const createForm = () => {
     const description = descriptionTextarea.value;
 
     const newTodo = { title, date, priority, description };
-    const myProject = myProjectData.project;
-    myProject.addTodos(newTodo);
-    console.log(myProject);
+    // const myProject = myProjectData.project;
+    // myProject.addTodos(newTodo);
+    // console.log(myProject);
   });
   todoForm.appendChild(addButton);
 };

@@ -1,10 +1,8 @@
-import createForm from "../../utils/createForm";
-import AddProject from "../AddProject/AddProject";
-
-const Todos = (index) => {
-  const todoForm = document.querySelector("#todo-form");
-  todoForm.replaceChildren();
-  createForm();
+const Todos = (event) => {
+  const index = event.target.dataset.id;
+  const sidebarHTML = document.querySelector(".sidebar");
+  const selectedProject = sidebarHTML.querySelector(`[data-id="${index}"]`);
+  console.log(selectedProject);
 };
 
 export default Todos;

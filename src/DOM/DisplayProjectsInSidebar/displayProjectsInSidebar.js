@@ -15,10 +15,16 @@ const renderProjects = (sidebarProjects) => {
     if (!existingProject) {
       const addSidebarProjects = createElement("div", "add-sidebar-projects");
       const span = createElement("span");
+
       span.textContent = item.name;
+
       addSidebarProjects.appendChild(span);
+
       addSidebarProjects.dataset.id = index;
-      addSidebarProjects.addEventListener("click", () => Todos(index));
+
+      addSidebarProjects.addEventListener("click", () =>
+        sidebar.getProject(item.id)
+      );
       sidebarHTML.appendChild(addSidebarProjects);
     }
   });

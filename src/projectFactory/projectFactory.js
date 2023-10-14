@@ -1,9 +1,8 @@
-const ProjectFactory = (projectName) => {
+const ProjectFactory = (projectName, projectID) => {
   let myProject = [];
 
   const addTodos = (...todos) => {
     myProject.push(...todos);
-    console.log(myProject);
   };
 
   const editTodos = (todoIndex) => {
@@ -32,6 +31,7 @@ const ProjectFactory = (projectName) => {
 
   return {
     name: projectName,
+    id: projectID,
     allTodos,
     addTodos,
     editTodos,
