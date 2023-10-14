@@ -9,8 +9,8 @@ const Todos = (itemID) => {
     const getDescription = document.querySelector("#description").value;
     const newTodo = { getTitle, getDate, getPriority, getDescription };
     const projectToAddTodo = sidebar.getProject(itemID);
-    console.log(projectToAddTodo.name); //this works
-     console.log(projectToAddTodo.addTodos(newTodo)); //this does not
+    projectToAddTodo.addTodos(newTodo);
+    console.log(projectToAddTodo.allTodos()); //this does not
   });
 };
 
