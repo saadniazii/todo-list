@@ -22,9 +22,9 @@ const renderProjects = (sidebarProjects) => {
 
       addSidebarProjects.dataset.id = index;
 
-      addSidebarProjects.addEventListener("click", () =>
-        sidebar.getProject(item.id)
-      );
+      addSidebarProjects.addEventListener("click", () => {
+        Todos(item.id);
+      });
       sidebarHTML.appendChild(addSidebarProjects);
     }
   });

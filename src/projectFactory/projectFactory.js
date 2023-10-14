@@ -1,10 +1,10 @@
 const ProjectFactory = (projectName, projectID) => {
   let myProject = [];
-  let id = projectID;
+  let _id = projectID;
 
   const addTodos = (...todos) => {
-    if (id >= 0 && id <= myProject.length) {
-      myProject.splice(id, 0, ...todos);
+    if (_id >= 0 && _id <= myProject.length) {
+      myProject.splice(_id, 0, ...todos);
     } else {
       myProject.push(...todos);
     }

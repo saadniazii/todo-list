@@ -26,9 +26,6 @@ const createForm = () => {
     const description = descriptionTextarea.value;
 
     const newTodo = { title, date, priority, description };
-    // const myProject = myProjectData.project;
-    // myProject.addTodos(newTodo);
-    // console.log(myProject);
   });
   todoForm.appendChild(addButton);
 };
