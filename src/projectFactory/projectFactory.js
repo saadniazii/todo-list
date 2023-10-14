@@ -1,8 +1,13 @@
 const ProjectFactory = (projectName, projectID) => {
   let myProject = [];
+  let id = projectID;
 
   const addTodos = (...todos) => {
-    myProject.push(...todos);
+    if (id >= 0 && id <= myProject.length) {
+      myProject.splice(id, 0, ...todos);
+    } else {
+      myProject.push(...todos);
+    }
   };
 
   const editTodos = (todoIndex) => {
@@ -14,8 +19,8 @@ const ProjectFactory = (projectName, projectID) => {
     return myProject[todoIndex];
   };
 
-  const deleteTodo = (todoIndex) => {
-    myProject.splice(todoIndex, 1);
+  const deleteTodo = (projectID) => {
+    myProject = myProject.filter((item) => item.id !== projectID);
     return myProject;
   };
 
