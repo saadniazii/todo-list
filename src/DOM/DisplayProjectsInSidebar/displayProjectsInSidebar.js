@@ -22,9 +22,10 @@ const renderProjects = (sidebarProjects) => {
 
       addSidebarProjects.dataset.id = index;
 
-      addSidebarProjects.addEventListener("click", () => {
-        Todos(item.id);
-      });
+      const passTodos = () => Todos(item.id);
+
+      addSidebarProjects.addEventListener("click", passTodos);
+
       sidebarHTML.appendChild(addSidebarProjects);
     }
   });
