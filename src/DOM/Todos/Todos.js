@@ -1,16 +1,24 @@
 import { sidebar } from "../../sidebarFactory/sidebarFactory";
+import TodoFactory from "../../todoFactory/todoFactory";
 
 const Todos = (itemID) => {
   const addTodoBtn = document.querySelector(".addTodoBtn");
   addTodoBtn.addEventListener("click", () => {
-    const getTitle = document.querySelector("#title").value;
-    const getDate = document.querySelector("#date").value;
-    const getPriority = document.querySelector("#priority").value;
-    const getDescription = document.querySelector("#description").value;
-    const newTodo = { getTitle, getDate, getPriority, getDescription };
-    const projectToAddTodo = sidebar.getProject(itemID);
+    const title = document.querySelector("#title").value;
+    const date = document.querySelector("#date").value;
+    const priority = document.querySelector("#priority").value;
+    const description = document.querySelector("#description").value;
+    const isCompleted = document.querySelector("#isCompleted").value;
+
+    const newTodo = TodoFactory(
+      title,
+      date,
+      priority,
+      description,
+      isCompleted
+    );
+    let projectToAddTodo = sidebar.getProject(itemID);
     projectToAddTodo.addTodos(newTodo);
-    console.log(projectToAddTodo.allTodos()); //this does not
   });
 };
 

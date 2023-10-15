@@ -2,12 +2,9 @@ const ProjectFactory = (projectName, projectID) => {
   let myProject = [];
   let id = projectID;
 
-  const addTodos = (...todos) => {
-    if (id >= 0 && id <= myProject.length) {
-      myProject.splice(id, 0, ...todos);
-    } else {
-      myProject.push(...todos);
-    }
+  const addTodos = (todos) => {
+    myProject = [...myProject, todos];
+    return myProject;
   };
 
   const editTodos = (todoIndex) => {
