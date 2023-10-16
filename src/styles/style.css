@@ -153,7 +153,8 @@ table {
   border: 3px solid green;
 }
 
-.projects-div {
+.projects-div,
+.todo-div {
   border: 3px solid red;
   margin-bottom: 15px;
 }

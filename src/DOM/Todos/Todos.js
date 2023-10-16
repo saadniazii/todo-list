@@ -1,5 +1,6 @@
 import { sidebar } from "../../sidebarFactory/sidebarFactory";
 import TodoFactory from "../../todoFactory/todoFactory";
+import createElement from "../../utils/createElement";
 
 const addTodoHandler = (itemID) => addTodo(itemID);
 
@@ -16,9 +17,37 @@ const addTodo = (itemID) => {
   const isCompleted = document.querySelector("#isCompleted").value;
 
   const newTodo = TodoFactory(title, date, priority, description, isCompleted);
-  console.log(newTodo);
   let projectToAddTodo = sidebar.getProject(itemID);
   projectToAddTodo.addTodos(newTodo);
+  renderTodo(projectToAddTodo);
+};
+
+const renderTodo = (project) => {
+  const todoDiv = createElement("div", "todo-div");
+
+  const todos = project.allTodos();
+  todos.forEach((element) => {
+    const titleDiv = createElement("div", "title-div");
+    const descriptionDiv = createElement("div", "description-div");
+    const dueDateDiv = createElement("div", "dueDate-div");
+    const priorityDiv = createElement("div", "priority-div");
+    const isCompletedDiv = createElement("div", "isCompleted-div");
+
+    titleDiv.textContent = element.getTitle();
+    descriptionDiv.textContent = element.getDescription();
+    dueDateDiv.textContent = element.getDueDate();
+    priorityDiv.textContent = element.getPriority();
+    isCompletedDiv.textContent = element.getIsCompleted();
+    todoDiv.append(
+      titleDiv,
+      descriptionDiv,
+      dueDateDiv,
+      priorityDiv,
+      isCompletedDiv
+    );
+  });
+  const mainBody = document.querySelector(".main-body");
+  mainBody.appendChild(todoDiv);
 };
 
 export default Todos;
