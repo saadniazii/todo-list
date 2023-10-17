@@ -13,6 +13,7 @@ const renderProjects = (sidebarProjects) => {
   const sidebarHTML = document.querySelector(".sidebar");
   sidebarProjects.forEach((item, index) => {
     const existingProject = sidebarHTML.querySelector(`[data-id="${index}"]`);
+
     if (!existingProject) {
       const projectsDiv = createElement("div", "projects-div");
       const span = createElement("span");
