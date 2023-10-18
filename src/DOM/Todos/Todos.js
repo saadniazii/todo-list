@@ -25,10 +25,15 @@ const addTodo = (event) => {
   renderTodo(projectToAddTodo);
 };
 
-const renderTodo = (project) => {
+export const renderTodo = (project) => {
   const todoDiv = createElement("div", "todo-div");
 
   const todos = project.allTodos();
+
+  if (todos.length <= 0) {
+    return;
+  }
+
   todos.forEach((element) => {
     const titleDiv = createElement("div", "title-div");
     const descriptionDiv = createElement("div", "description-div");
@@ -51,6 +56,21 @@ const renderTodo = (project) => {
   });
   const mainBody = document.querySelector(".main-body");
   mainBody.appendChild(todoDiv);
+};
+
+export const getAllTodos = (itemID) => {
+  const mainBody = document.querySelector(".main-body");
+  mainBody.replaceChildren();
+  if (mainBody.childNodes.length === 0) {
+    const getProject = sidebar.getProject(itemID);
+    // const getTodos = getProject.allTodos();
+    if (getProject.length === 0) {
+      return;
+    }
+
+    renderTodo(getProject);
+    console.log("get todos: ", getProject);
+  }
 };
 
 export default Todos;
