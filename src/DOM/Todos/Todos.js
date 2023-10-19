@@ -27,6 +27,7 @@ const addTodo = (event) => {
 
 export const renderTodo = (project) => {
   const todoDiv = createElement("div", "todo-div");
+  console.log("project", project);
 
   const todos = project.allTodos();
 
@@ -40,18 +41,29 @@ export const renderTodo = (project) => {
     const dueDateDiv = createElement("div", "dueDate-div");
     const priorityDiv = createElement("div", "priority-div");
     const isCompletedDiv = createElement("div", "isCompleted-div");
+    const editTodoBtn = createElement("button", "edit-todo-btn");
+    const deleteTodoBtn = createElement("button", "delete-todo-btn");
 
     titleDiv.textContent = element.getTitle();
     descriptionDiv.textContent = element.getDescription();
     dueDateDiv.textContent = element.getDueDate();
     priorityDiv.textContent = element.getPriority();
     isCompletedDiv.textContent = element.getIsCompleted();
+    editTodoBtn.textContent = "Edit";
+    deleteTodoBtn.textContent = "Delete";
+    todoDiv.dataset.id = project.id;
+    deleteTodoBtn.addEventListener("click", () => {
+      deleteFromDOM(project, project.id);
+    });
+
     todoDiv.append(
       titleDiv,
       descriptionDiv,
       dueDateDiv,
       priorityDiv,
-      isCompletedDiv
+      isCompletedDiv,
+      editTodoBtn,
+      deleteTodoBtn,
     );
   });
   const mainBody = document.querySelector(".main-body");
@@ -69,7 +81,15 @@ export const getAllTodos = (itemID) => {
     }
 
     renderTodo(getProject);
-    console.log("get todos: ", getProject);
+  }
+};
+
+const deleteFromDOM = (project, itemID) => {
+  const mainBody = document.querySelector(".main-body");
+  const getSpecific = mainBody.querySelector(`[data-id="${itemID}"]`);
+  if (mainBody.childNodes.length > 0) {
+    project.deleteTodo(itemID);
+    mainBody.removeChild(getSpecific);
   }
 };
 
