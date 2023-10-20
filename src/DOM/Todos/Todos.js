@@ -12,8 +12,7 @@ const Todos = (itemID) => {
   addTodoBtn.addEventListener("click", addTodoHandler);
 };
 
-const addTodo = (event) => {
-  console.log(event.target);
+const addTodo = () => {
   const title = document.querySelector("#title").value;
   const date = document.querySelector("#date").value;
   const priority = document.querySelector("#priority").value;
@@ -27,7 +26,7 @@ const addTodo = (event) => {
 
 export const renderTodo = (project) => {
   const todoDiv = createElement("div", "todo-div");
-  console.log("project", project);
+  const mainBody = document.querySelector(".main-body");
 
   const todos = project.allTodos();
 
@@ -35,7 +34,13 @@ export const renderTodo = (project) => {
     return;
   }
 
-  todos.forEach((element) => {
+  todos.forEach((element, index) => {
+    // const existingProject = mainBody.childNodes;
+    // existingProject.forEach((item, index) => {
+    //   const existingProject = item.getAttribute(`[data-id="${index}"]`);
+    //   console.log("existing project", existingProject);
+    // });
+
     const titleDiv = createElement("div", "title-div");
     const descriptionDiv = createElement("div", "description-div");
     const dueDateDiv = createElement("div", "dueDate-div");
@@ -49,11 +54,16 @@ export const renderTodo = (project) => {
     dueDateDiv.textContent = element.getDueDate();
     priorityDiv.textContent = element.getPriority();
     isCompletedDiv.textContent = element.getIsCompleted();
+    todoDiv.dataset.id = `${index}`;
+
     editTodoBtn.textContent = "Edit";
     deleteTodoBtn.textContent = "Delete";
-    todoDiv.dataset.id = project.id;
     deleteTodoBtn.addEventListener("click", () => {
-      deleteFromDOM(project, project.id);
+      deleteFromDOM(project, index);
+    });
+
+    editTodoBtn.addEventListener("click", () => {
+      editTodo(project.id);
     });
 
     todoDiv.append(
@@ -66,7 +76,7 @@ export const renderTodo = (project) => {
       deleteTodoBtn,
     );
   });
-  const mainBody = document.querySelector(".main-body");
+
   mainBody.appendChild(todoDiv);
 };
 
@@ -75,11 +85,9 @@ export const getAllTodos = (itemID) => {
   mainBody.replaceChildren();
   if (mainBody.childNodes.length === 0) {
     const getProject = sidebar.getProject(itemID);
-    // const getTodos = getProject.allTodos();
     if (getProject.length === 0) {
       return;
     }
-
     renderTodo(getProject);
   }
 };
@@ -87,10 +95,17 @@ export const getAllTodos = (itemID) => {
 const deleteFromDOM = (project, itemID) => {
   const mainBody = document.querySelector(".main-body");
   const getSpecific = mainBody.querySelector(`[data-id="${itemID}"]`);
-  if (mainBody.childNodes.length > 0) {
+  if (getSpecific) {
     project.deleteTodo(itemID);
-    mainBody.removeChild(getSpecific);
+    console.log("project", project.allTodos());
+    getSpecific.remove();
   }
+};
+
+const editTodo = (itemID) => {
+  const mainBody = document.querySelector(".main-body");
+  const getSpecific = mainBody.querySelector(`[data-id="${itemID}"]`);
+  //get the project ID
 };
 
 export default Todos;

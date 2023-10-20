@@ -1,24 +1,29 @@
 const ProjectFactory = (projectName, projectID) => {
   let myProject = [];
-  let id = projectID;
 
   const addTodos = (todos) => {
     myProject = [...myProject, todos];
     return myProject;
   };
 
-  const editTodos = (todoIndex) => {
-    myProject[todoIndex].setTitle("NEW EDIT TODOS");
-    myProject[todoIndex].setDescription("NEW EDIT DESCRIPTION");
-    myProject[todoIndex].setDueDate("NEW EDIT DATE");
-    myProject[todoIndex].setPriority("high");
-    myProject[todoIndex].setIsCompleted(false);
+  const editTodos = (
+    todoIndex,
+    newTitle,
+    newDescription,
+    newDueDate,
+    newPriority,
+    newIsCompleted,
+  ) => {
+    myProject[todoIndex].setTitle(`${newTitle}`);
+    myProject[todoIndex].setDescription(`${newDescription}`);
+    myProject[todoIndex].setDueDate(`${newDueDate}`);
+    myProject[todoIndex].setPriority(`${newPriority}`);
+    myProject[todoIndex].setIsCompleted(`${newIsCompleted}`);
     return myProject[todoIndex];
   };
 
   const deleteTodo = (projectID) => {
-    myProject = myProject.filter((item) => item.id !== projectID);
-    return myProject;
+    myProject = myProject.filter((item) => item.id === projectID);
   };
 
   const allTodos = () => {
