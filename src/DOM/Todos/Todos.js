@@ -35,7 +35,7 @@ export const renderTodo = (project) => {
   }
 
   todos.forEach((element, index) => {
-    const existingTodo = document.querySelector(`[data-id="${index}"]`);
+    const existingTodo = document.querySelector(`[data-todoid="${index}"]`);
     if (!existingTodo) {
       const titleDiv = createElement("div", "title-div");
       const descriptionDiv = createElement("div", "description-div");
@@ -50,7 +50,7 @@ export const renderTodo = (project) => {
       dueDateDiv.textContent = element.getDueDate();
       priorityDiv.textContent = element.getPriority();
       isCompletedDiv.textContent = element.getIsCompleted();
-      todoDiv.dataset.id = index.toString();
+      todoDiv.dataset.todoid = index.toString();
 
       editTodoBtn.textContent = "Edit";
       deleteTodoBtn.textContent = "Delete";
