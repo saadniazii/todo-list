@@ -35,49 +35,46 @@ export const renderTodo = (project) => {
   }
 
   todos.forEach((element, index) => {
-    // const existingProject = mainBody.childNodes;
-    // existingProject.forEach((item, index) => {
-    //   const existingProject = item.getAttribute(`[data-id="${index}"]`);
-    //   console.log("existing project", existingProject);
-    // });
+    const existingTodo = document.querySelector(`[data-id="${index}"]`);
+    if (!existingTodo) {
+      const titleDiv = createElement("div", "title-div");
+      const descriptionDiv = createElement("div", "description-div");
+      const dueDateDiv = createElement("div", "dueDate-div");
+      const priorityDiv = createElement("div", "priority-div");
+      const isCompletedDiv = createElement("div", "isCompleted-div");
+      const editTodoBtn = createElement("button", "edit-todo-btn");
+      const deleteTodoBtn = createElement("button", "delete-todo-btn");
 
-    const titleDiv = createElement("div", "title-div");
-    const descriptionDiv = createElement("div", "description-div");
-    const dueDateDiv = createElement("div", "dueDate-div");
-    const priorityDiv = createElement("div", "priority-div");
-    const isCompletedDiv = createElement("div", "isCompleted-div");
-    const editTodoBtn = createElement("button", "edit-todo-btn");
-    const deleteTodoBtn = createElement("button", "delete-todo-btn");
+      titleDiv.textContent = element.getTitle();
+      descriptionDiv.textContent = element.getDescription();
+      dueDateDiv.textContent = element.getDueDate();
+      priorityDiv.textContent = element.getPriority();
+      isCompletedDiv.textContent = element.getIsCompleted();
+      todoDiv.dataset.id = index.toString();
 
-    titleDiv.textContent = element.getTitle();
-    descriptionDiv.textContent = element.getDescription();
-    dueDateDiv.textContent = element.getDueDate();
-    priorityDiv.textContent = element.getPriority();
-    isCompletedDiv.textContent = element.getIsCompleted();
-    todoDiv.dataset.id = `${index}`;
+      editTodoBtn.textContent = "Edit";
+      deleteTodoBtn.textContent = "Delete";
+      deleteTodoBtn.addEventListener("click", () => {
+        deleteFromDOM(project, index);
+      });
 
-    editTodoBtn.textContent = "Edit";
-    deleteTodoBtn.textContent = "Delete";
-    deleteTodoBtn.addEventListener("click", () => {
-      deleteFromDOM(project, index);
-    });
+      editTodoBtn.addEventListener("click", () => {
+        editTodo(index);
+      });
 
-    editTodoBtn.addEventListener("click", () => {
-      editTodo(project.id);
-    });
+      todoDiv.append(
+        titleDiv,
+        descriptionDiv,
+        dueDateDiv,
+        priorityDiv,
+        isCompletedDiv,
+        editTodoBtn,
+        deleteTodoBtn,
+      );
 
-    todoDiv.append(
-      titleDiv,
-      descriptionDiv,
-      dueDateDiv,
-      priorityDiv,
-      isCompletedDiv,
-      editTodoBtn,
-      deleteTodoBtn,
-    );
+      mainBody.appendChild(todoDiv);
+    }
   });
-
-  mainBody.appendChild(todoDiv);
 };
 
 export const getAllTodos = (itemID) => {
@@ -97,14 +94,13 @@ const deleteFromDOM = (project, itemID) => {
   const getSpecific = mainBody.querySelector(`[data-id="${itemID}"]`);
   if (getSpecific) {
     project.deleteTodo(itemID);
-    console.log("project", project.allTodos());
     getSpecific.remove();
   }
 };
 
 const editTodo = (itemID) => {
-  const mainBody = document.querySelector(".main-body");
-  const getSpecific = mainBody.querySelector(`[data-id="${itemID}"]`);
+  const getSpecific = document.querySelector(`[data-id="${itemID}"]`);
+  console.log("get specific:", getSpecific);
   //get the project ID
 };
 

@@ -3,7 +3,7 @@ const ProjectFactory = (projectName, projectID) => {
 
   const addTodos = (todos) => {
     myProject = [...myProject, todos];
-    return myProject;
+    console.log("myProject: ", myProject);
   };
 
   const editTodos = (
