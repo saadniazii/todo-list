@@ -1,6 +1,8 @@
 import { sidebar } from "../../sidebarFactory/sidebarFactory";
 import TodoFactory from "../../todoFactory/todoFactory";
 import createElement from "../../utils/createElement";
+import { deleteTodo } from "./deleteTodo";
+import { renderTodo } from "./renderTodo";
 
 const addTodoHandler = (event) => addTodo(event);
 let projectToAddTodo = null;
@@ -24,81 +26,7 @@ const addTodo = () => {
   renderTodo(projectToAddTodo);
 };
 
-export const renderTodo = (project) => {
-  const todoDiv = createElement("div", "todo-div");
-  const mainBody = document.querySelector(".main-body");
-
-  const todos = project.allTodos();
-
-  if (todos.length <= 0) {
-    return;
-  }
-
-  todos.forEach((element, index) => {
-    const existingTodo = document.querySelector(`[data-todoid="${index}"]`);
-    if (!existingTodo) {
-      const titleDiv = createElement("div", "title-div");
-      const descriptionDiv = createElement("div", "description-div");
-      const dueDateDiv = createElement("div", "dueDate-div");
-      const priorityDiv = createElement("div", "priority-div");
-      const isCompletedDiv = createElement("div", "isCompleted-div");
-      const editTodoBtn = createElement("button", "edit-todo-btn");
-      const deleteTodoBtn = createElement("button", "delete-todo-btn");
-
-      titleDiv.textContent = element.getTitle();
-      descriptionDiv.textContent = element.getDescription();
-      dueDateDiv.textContent = element.getDueDate();
-      priorityDiv.textContent = element.getPriority();
-      isCompletedDiv.textContent = element.getIsCompleted();
-      todoDiv.dataset.todoid = index.toString();
-
-      editTodoBtn.textContent = "Edit";
-      deleteTodoBtn.textContent = "Delete";
-      deleteTodoBtn.addEventListener("click", () => {
-        deleteFromDOM(project, index);
-      });
-
-      editTodoBtn.addEventListener("click", () => {
-        editTodo(index, project);
-      });
-
-      todoDiv.append(
-        titleDiv,
-        descriptionDiv,
-        dueDateDiv,
-        priorityDiv,
-        isCompletedDiv,
-        editTodoBtn,
-        deleteTodoBtn,
-      );
-
-      mainBody.appendChild(todoDiv);
-    }
-  });
-};
-
-export const getAllTodos = (itemID) => {
-  const mainBody = document.querySelector(".main-body");
-  mainBody.replaceChildren();
-  if (mainBody.childNodes.length === 0) {
-    const getProject = sidebar.getProject(itemID);
-    if (getProject.length === 0) {
-      return;
-    }
-    renderTodo(getProject);
-  }
-};
-
-const deleteFromDOM = (project, itemID) => {
-  const mainBody = document.querySelector(".main-body");
-  const getSpecific = mainBody.querySelector(`[data-id="${itemID}"]`);
-  if (getSpecific) {
-    project.deleteTodo(itemID);
-    getSpecific.remove();
-  }
-};
-
-const editTodo = (itemID, project) => {
+export const editTodo = (itemID, project) => {
   const todoDiv = createElement("div", "todo-div");
   const mainBody = document.querySelector(".main-body");
 
@@ -177,9 +105,9 @@ const editTodo = (itemID, project) => {
   descriptionTextarea.setAttribute("id", "edit-description");
 
   // Create the button element for adding a todo
-  const addButton = document.createElement("button");
-  addButton.setAttribute("class", "addTodoBtn");
-  addButton.textContent = "Add Todo";
+  const saveButton = document.createElement("button");
+  saveButton.setAttribute("class", "addTodoBtn");
+  saveButton.textContent = "Save Todo";
 
   const titleDiv = createElement("div", "title-div");
   const descriptionDiv = createElement("div", "description-div");
@@ -187,7 +115,7 @@ const editTodo = (itemID, project) => {
   const priorityDiv = createElement("div", "priority-div");
   const isCompletedDiv = createElement("div", "isCompleted-div");
 
-  addButton.addEventListener("click", () => {
+  saveButton.addEventListener("click", () => {
     const title = document.querySelector("#edit-title").value;
     const date = document.querySelector("#edit-date").value;
     const priority = document.querySelector("#edit-priority").value;
@@ -205,7 +133,7 @@ const editTodo = (itemID, project) => {
     editTodoBtn.textContent = "Edit";
     deleteTodoBtn.textContent = "Delete";
     deleteTodoBtn.addEventListener("click", () => {
-      deleteFromDOM(project, itemID);
+      deleteTodo(project, itemID);
     });
 
     editTodoBtn.addEventListener("click", () => {
@@ -223,7 +151,6 @@ const editTodo = (itemID, project) => {
     todoDiv.appendChild(deleteTodoBtn);
 
     project.editTodos(itemID, title, date, priority, description, isCompleted);
-    console.log(project.allTodos());
   });
 
   todoDiv.appendChild(titleInput);
@@ -231,7 +158,7 @@ const editTodo = (itemID, project) => {
   todoDiv.appendChild(prioritySelect);
   todoDiv.appendChild(isCompletedSelect);
   todoDiv.appendChild(descriptionTextarea);
-  todoDiv.appendChild(addButton);
+  todoDiv.appendChild(saveButton);
 
   let getSpecific = document.querySelector(`[data-todoid="${itemID}"]`);
   getSpecific.replaceChildren();

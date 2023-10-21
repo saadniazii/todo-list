@@ -1,6 +1,7 @@
 import { sidebar } from "../../sidebarFactory/sidebarFactory";
 import createElement from "../../utils/createElement";
-import Todos, { getAllTodos, renderTodo } from "../Todos/Todos";
+import Todos, { renderTodo } from "../Todos/Todos";
+import { getAllTodos } from "../Todos/getAllTodos";
 
 const displayProjectsInSidebar = () => {
   const allSidebarProjects = sidebar.allProjects();
