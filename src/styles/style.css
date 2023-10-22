@@ -246,24 +246,7 @@ input[type="date"] {
   -moz-appearance: none;
 }
 
-input[type="date"]::before {
-  content: "\f073";
-  font-family: FontAwesome;
-  padding: 5px 10px;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  color: #333;
-  background-color: white;
-}
 
-input[type="date"]::before {
-  display: inline-block;
-  position: relative;
-  right: -339px;
-  background-color: #f7f7f7;
-  cursor: pointer;
-}
 
 input[type="date"]:focus::before {
   border-color: #007BFF;
@@ -292,4 +275,11 @@ button:active {
 
 .addProjectBtn{
   margin-top: 30px;
+}
+
+.todo-div{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  align-items: center;
 }
