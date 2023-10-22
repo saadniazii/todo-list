@@ -280,14 +280,6 @@ button:active {
 .todo-div{
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
+  gap: 15px;
   align-items: center;
-}
-
-.edited-todo-div{
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
-  align-items: center;
-  background-color: #EEE5E9;
 }

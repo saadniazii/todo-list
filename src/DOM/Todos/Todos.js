@@ -29,7 +29,6 @@ const addTodo = () => {
 
 export const editTodo = (itemID, project) => {
   const todoDiv = document.querySelector(`[data-todoid="${itemID}"]`);
-  console.log("todoDiv", todoDiv.childNodes[0].textContent);
   const mainBody = document.querySelector(".main-body");
 
   const titleInput = document.createElement("input");
@@ -45,6 +44,7 @@ export const editTodo = (itemID, project) => {
   dateInput.setAttribute("id", "edit-date");
   dateInput.setAttribute("name", "date");
   dateInput.value = todoDiv.childNodes[1].textContent;
+  dateInput.style.marginLeft = "10px";
 
   const prioritySelect = document.createElement("select");
   prioritySelect.setAttribute("name", "priority");
@@ -52,7 +52,7 @@ export const editTodo = (itemID, project) => {
 
   const priorityDefaultOption = document.createElement("option");
   priorityDefaultOption.setAttribute("value", "");
-  priorityDefaultOption.textContent = "--Please choose Priority Level--";
+  priorityDefaultOption.textContent = "Priority Level";
 
   const priorityLowOption = document.createElement("option");
   priorityLowOption.setAttribute("value", "low");
@@ -78,7 +78,7 @@ export const editTodo = (itemID, project) => {
 
   const isCompletedDefaultOption = document.createElement("option");
   isCompletedDefaultOption.setAttribute("value", "");
-  isCompletedDefaultOption.textContent = "--Is Todo Completed?--";
+  isCompletedDefaultOption.textContent = "Todo Completed?";
 
   const isCompletedYesOption = document.createElement("option");
   isCompletedYesOption.setAttribute("value", "yes");
@@ -118,7 +118,6 @@ export const editTodo = (itemID, project) => {
     const description = document.querySelector("#edit-description").value;
     const isCompleted = document.querySelector("#edit-isCompleted").value;
     const editTodoBtn = createElement("button", "edit-todo-btn");
-    // const deleteTodoBtn = createElement("button", "delete-todo-btn");
 
     titleDiv.textContent = title;
     dueDateDiv.textContent = date;
@@ -127,10 +126,6 @@ export const editTodo = (itemID, project) => {
     descriptionDiv.textContent = description;
 
     editTodoBtn.textContent = "Edit";
-    // deleteTodoBtn.textContent = "Delete";
-    // deleteTodoBtn.addEventListener("click", () => {
-    //   deleteTodo(project, itemID);
-    // });
 
     editTodoBtn.addEventListener("click", () => {
       editTodo(itemID, project);
