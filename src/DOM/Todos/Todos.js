@@ -28,7 +28,8 @@ const addTodo = () => {
 };
 
 export const editTodo = (itemID, project) => {
-  const todoDiv = createElement("div", "todo-div");
+  const todoDiv = document.querySelector(`[data-todoid="${itemID}"]`);
+  console.log("todoDiv", todoDiv.childNodes[0].textContent);
   const mainBody = document.querySelector(".main-body");
 
   const titleInput = document.createElement("input");
@@ -36,25 +37,23 @@ export const editTodo = (itemID, project) => {
   titleInput.setAttribute("placeholder", "Title");
   titleInput.setAttribute("id", "edit-title");
   titleInput.setAttribute("name", "title");
+  titleInput.value = todoDiv.childNodes[0].textContent;
 
-  // Create the input element for the date
   const dateInput = document.createElement("input");
   dateInput.setAttribute("type", "date");
   dateInput.setAttribute("placeholder", "23/09/2023");
   dateInput.setAttribute("id", "edit-date");
   dateInput.setAttribute("name", "date");
+  dateInput.value = todoDiv.childNodes[1].textContent;
 
-  // Create the select element for priority
   const prioritySelect = document.createElement("select");
   prioritySelect.setAttribute("name", "priority");
   prioritySelect.setAttribute("id", "edit-priority");
 
-  // Create the default option for priority
   const priorityDefaultOption = document.createElement("option");
   priorityDefaultOption.setAttribute("value", "");
   priorityDefaultOption.textContent = "--Please choose Priority Level--";
 
-  // Create the option elements for priority
   const priorityLowOption = document.createElement("option");
   priorityLowOption.setAttribute("value", "low");
   priorityLowOption.textContent = "Low";
@@ -67,23 +66,20 @@ export const editTodo = (itemID, project) => {
   priorityHighOption.setAttribute("value", "high");
   priorityHighOption.textContent = "High";
 
-  // Append the priority options to the select element
   prioritySelect.appendChild(priorityDefaultOption);
   prioritySelect.appendChild(priorityLowOption);
   prioritySelect.appendChild(priorityMediumOption);
   prioritySelect.appendChild(priorityHighOption);
+  prioritySelect.value = todoDiv.childNodes[2].textContent;
 
-  // Create the select element for isCompleted
   const isCompletedSelect = document.createElement("select");
   isCompletedSelect.setAttribute("name", "isCompleted");
   isCompletedSelect.setAttribute("id", "edit-isCompleted");
 
-  // Create the default option for isCompleted
   const isCompletedDefaultOption = document.createElement("option");
   isCompletedDefaultOption.setAttribute("value", "");
   isCompletedDefaultOption.textContent = "--Is Todo Completed?--";
 
-  // Create the option elements for isCompleted
   const isCompletedYesOption = document.createElement("option");
   isCompletedYesOption.setAttribute("value", "yes");
   isCompletedYesOption.textContent = "Yes";
@@ -92,20 +88,19 @@ export const editTodo = (itemID, project) => {
   isCompletedNoOption.setAttribute("value", "no");
   isCompletedNoOption.textContent = "No";
 
-  // Append the isCompleted options to the select element
   isCompletedSelect.appendChild(isCompletedDefaultOption);
   isCompletedSelect.appendChild(isCompletedYesOption);
   isCompletedSelect.appendChild(isCompletedNoOption);
+  isCompletedSelect.value = todoDiv.childNodes[4].textContent;
 
-  // Create the textarea element for description
   const descriptionTextarea = document.createElement("textarea");
   descriptionTextarea.setAttribute(
     "placeholder",
     "write description about the todo",
   );
   descriptionTextarea.setAttribute("id", "edit-description");
+  descriptionTextarea.value = todoDiv.childNodes[3].textContent;
 
-  // Create the button element for adding a todo
   const saveButton = document.createElement("button");
   saveButton.setAttribute("class", "addTodoBtn");
   saveButton.textContent = "Save Todo";
@@ -123,7 +118,7 @@ export const editTodo = (itemID, project) => {
     const description = document.querySelector("#edit-description").value;
     const isCompleted = document.querySelector("#edit-isCompleted").value;
     const editTodoBtn = createElement("button", "edit-todo-btn");
-    const deleteTodoBtn = createElement("button", "delete-todo-btn");
+    // const deleteTodoBtn = createElement("button", "delete-todo-btn");
 
     titleDiv.textContent = title;
     dueDateDiv.textContent = date;
@@ -132,10 +127,10 @@ export const editTodo = (itemID, project) => {
     descriptionDiv.textContent = description;
 
     editTodoBtn.textContent = "Edit";
-    deleteTodoBtn.textContent = "Delete";
-    deleteTodoBtn.addEventListener("click", () => {
-      deleteTodo(project, itemID);
-    });
+    // deleteTodoBtn.textContent = "Delete";
+    // deleteTodoBtn.addEventListener("click", () => {
+    //   deleteTodo(project, itemID);
+    // });
 
     editTodoBtn.addEventListener("click", () => {
       editTodo(itemID, project);
@@ -149,7 +144,7 @@ export const editTodo = (itemID, project) => {
     todoDiv.appendChild(isCompletedDiv);
     todoDiv.appendChild(descriptionDiv);
     todoDiv.appendChild(editTodoBtn);
-    todoDiv.appendChild(deleteTodoBtn);
+    // todoDiv.appendChild(deleteTodoBtn);
 
     project.editTodos(itemID, title, date, priority, description, isCompleted);
   });
@@ -160,9 +155,10 @@ export const editTodo = (itemID, project) => {
   todoDiv.appendChild(isCompletedSelect);
   todoDiv.appendChild(descriptionTextarea);
   todoDiv.appendChild(saveButton);
+  // todoDiv.appendChild(deleteTodoBtn);
 
-  let getSpecific = document.querySelector(`[data-todoid="${itemID}"]`);
-  getSpecific.replaceChildren();
+  // let getSpecific = document.querySelector(`[data-todoid="${itemID}"]`);
+  // getSpecific.replaceChildren();
   mainBody.appendChild(todoDiv);
 };
 
