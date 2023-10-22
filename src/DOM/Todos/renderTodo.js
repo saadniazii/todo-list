@@ -14,6 +14,9 @@ const renderSingleTodo = (todo, index, project) => {
   const editTodoBtn = createElement("button", "edit-todo-btn");
   const deleteTodoBtn = createElement("button", "delete-todo-btn");
 
+  editTodoBtn.textContent = "Edit";
+  deleteTodoBtn.textContent = "Delete";
+
   titleDiv.textContent = todo.getTitle();
   descriptionDiv.textContent = todo.getDescription();
   dueDateDiv.textContent = todo.getDueDate();

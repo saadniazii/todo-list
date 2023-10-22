@@ -1,5 +1,5 @@
 import { sidebar } from "../../sidebarFactory/sidebarFactory";
-import { renderTodo } from "./Todos";
+import { renderTodo } from "./renderTodo";
 
 export const getAllTodos = (itemID) => {
   const mainBody = document.querySelector(".main-body");
