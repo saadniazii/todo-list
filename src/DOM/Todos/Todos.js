@@ -23,6 +23,7 @@ const addTodo = () => {
 
   const newTodo = TodoFactory(title, date, priority, description, isCompleted);
   projectToAddTodo.addTodos(newTodo);
+
   renderTodo(projectToAddTodo);
 };
 

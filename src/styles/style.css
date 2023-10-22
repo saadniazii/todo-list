@@ -125,36 +125,171 @@ table {
 
 /* CSS Reset End */
 .container {
-  border: 3px solid red;
   height: 100vh;
+  gap: 20px;
   display: grid;
   grid-template-columns: 1fr 5fr;
   grid-template-rows: repeat(auto-fit, minmax(100px, 120px));
+  background-color: #5E6973;
 }
 
 .header {
-  border: 3px solid red;
   grid-column: 2 / -1;
+  background-color: #6DC0D5;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 10px;
+  gap: 10px;
 }
 
 .sidebar {
   grid-column: 1 / 2;
   grid-row: 1 / 10;
-  border: 3px solid cornflowerblue;
+  background-color: #6DC0D5;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .main-body {
-  border: 3px solid salmon;
   grid-row: 2 / 6;
+  background-color: #6DC0D5;
 }
 
 .footer {
   grid-row: 6/10;
-  border: 3px solid green;
+  background-color: #6DC0D5;
 }
 
 .projects-div,
 .todo-div {
-  border: 3px solid red;
+  padding: 15px;
   margin-bottom: 15px;
+  margin-top: 15px;
+  background-color: #f7f7f7;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+
+input[type="text"] {
+  width: 94%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Add box shadow for a subtle depth effect on focus */
+input[type="text"]:focus {
+  outline: none;
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Customize the placeholder text */
+input[type="text"]::placeholder {
+  color: #999;
+}
+
+
+select {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+  background-color: white;
+  appearance: none;
+  width: 100%;
+}
+
+
+select:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+select::-ms-expand {
+  display: none;
+}
+select::-webkit-select-arrow {
+  display: none;
+}
+
+select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+select option {
+  font-size: 16px;
+  color: #333;
+}
+
+select.select-dropdown {
+  border: 2px solid #ccc;
+  background-color: white;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+input[type="date"]::before {
+  content: "\f073";
+  font-family: FontAwesome;
+  padding: 5px 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+  background-color: white;
+}
+
+input[type="date"]::before {
+  display: inline-block;
+  position: relative;
+  right: -339px;
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
+
+input[type="date"]:focus::before {
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #007BFF;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:active {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.addProjectBtn{
+  margin-top: 30px;
 }
