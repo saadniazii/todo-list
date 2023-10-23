@@ -1,7 +1,7 @@
 import { sidebar } from "../../sidebarFactory/sidebarFactory";
 import TodoFactory from "../../todoFactory/todoFactory";
 import createElement from "../../utils/createElement";
-import { renderTodo } from "./renderTodo";
+import { isTodoCompleted, renderBorderOfTodos, renderTodo } from "./renderTodo";
 
 const addTodoHandler = (event) => addTodo(event);
 let projectToAddTodo = null;
@@ -140,6 +140,8 @@ export const editTodo = (itemID, project) => {
     todoDiv.appendChild(editTodoBtn);
 
     project.editTodos(itemID, title, date, priority, description, isCompleted);
+    renderBorderOfTodos(itemID);
+    isTodoCompleted(itemID);
   });
 
   todoDiv.appendChild(titleInput);

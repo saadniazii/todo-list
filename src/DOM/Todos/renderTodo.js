@@ -62,7 +62,7 @@ export const renderTodo = (project) => {
   });
 };
 
-const renderBorderOfTodos = (index) => {
+export const renderBorderOfTodos = (index) => {
   const todoDiv = document.querySelector(`[data-todoid="${index}"]`);
   if (todoDiv.childNodes[2].textContent === "low") {
     todoDiv.style.backgroundColor = "#5DD39E";
@@ -76,7 +76,7 @@ const renderBorderOfTodos = (index) => {
   }
 };
 
-const isTodoCompleted = (index) => {
+export const isTodoCompleted = (index) => {
   const todoDiv = document.querySelector(`[data-todoid="${index}"]`);
   const allChildren = todoDiv.childNodes;
   if (todoDiv.childNodes[4].textContent === "yes") {
