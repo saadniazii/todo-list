@@ -43,6 +43,8 @@ const renderSingleTodo = (todo, index, project) => {
   );
 
   mainBody.appendChild(todoDiv);
+  renderBorderOfTodos(index);
+  isTodoCompleted(index);
 };
 
 export const renderTodo = (project) => {
@@ -58,4 +60,30 @@ export const renderTodo = (project) => {
       renderSingleTodo(todo, index, project);
     }
   });
+};
+
+const renderBorderOfTodos = (index) => {
+  const todoDiv = document.querySelector(`[data-todoid="${index}"]`);
+  if (todoDiv.childNodes[2].textContent === "low") {
+    todoDiv.style.backgroundColor = "#5DD39E";
+    todoDiv.style.color = "white";
+  } else if (todoDiv.childNodes[2].textContent === "medium") {
+    todoDiv.style.backgroundColor = "#FFD23F";
+    todoDiv.style.color = "black";
+  } else if (todoDiv.childNodes[2].textContent === "high") {
+    todoDiv.style.backgroundColor = "#960200";
+    todoDiv.style.color = "white";
+  }
+};
+
+const isTodoCompleted = (index) => {
+  const todoDiv = document.querySelector(`[data-todoid="${index}"]`);
+  const allChildren = todoDiv.childNodes;
+  if (todoDiv.childNodes[4].textContent === "yes") {
+    return allChildren.forEach((children) => {
+      if (children.nodeName === "DIV") {
+        children.style.textDecoration = "line-through";
+      }
+    });
+  }
 };

@@ -1,7 +1,6 @@
 import { sidebar } from "../../sidebarFactory/sidebarFactory";
 import TodoFactory from "../../todoFactory/todoFactory";
 import createElement from "../../utils/createElement";
-import { deleteTodo } from "./deleteTodo";
 import { renderTodo } from "./renderTodo";
 
 const addTodoHandler = (event) => addTodo(event);
@@ -139,7 +138,6 @@ export const editTodo = (itemID, project) => {
     todoDiv.appendChild(isCompletedDiv);
     todoDiv.appendChild(descriptionDiv);
     todoDiv.appendChild(editTodoBtn);
-    // todoDiv.appendChild(deleteTodoBtn);
 
     project.editTodos(itemID, title, date, priority, description, isCompleted);
   });
@@ -150,10 +148,6 @@ export const editTodo = (itemID, project) => {
   todoDiv.appendChild(isCompletedSelect);
   todoDiv.appendChild(descriptionTextarea);
   todoDiv.appendChild(saveButton);
-  // todoDiv.appendChild(deleteTodoBtn);
-
-  // let getSpecific = document.querySelector(`[data-todoid="${itemID}"]`);
-  // getSpecific.replaceChildren();
   mainBody.appendChild(todoDiv);
 };
 
