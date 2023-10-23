@@ -2,6 +2,7 @@ import { sidebar } from "../../sidebarFactory/sidebarFactory";
 import TodoFactory from "../../todoFactory/todoFactory";
 import createElement from "../../utils/createElement";
 import { isTodoCompleted, renderBorderOfTodos, renderTodo } from "./renderTodo";
+import { deleteTodo } from "./deleteTodo";
 
 const addTodoHandler = (event) => addTodo(event);
 let projectToAddTodo = null;
@@ -117,6 +118,7 @@ export const editTodo = (itemID, project) => {
     const description = document.querySelector("#edit-description").value;
     const isCompleted = document.querySelector("#edit-isCompleted").value;
     const editTodoBtn = createElement("button", "edit-todo-btn");
+    const deleteTodoBtn = createElement("button", "delete-todo-btn");
 
     titleDiv.textContent = title;
     dueDateDiv.textContent = date;
@@ -125,6 +127,11 @@ export const editTodo = (itemID, project) => {
     descriptionDiv.textContent = description;
 
     editTodoBtn.textContent = "Edit";
+    deleteTodoBtn.textContent = "Delete";
+
+    deleteTodoBtn.addEventListener("click", () => {
+      deleteTodo(project, itemID);
+    });
 
     editTodoBtn.addEventListener("click", () => {
       editTodo(itemID, project);
@@ -138,6 +145,7 @@ export const editTodo = (itemID, project) => {
     todoDiv.appendChild(isCompletedDiv);
     todoDiv.appendChild(descriptionDiv);
     todoDiv.appendChild(editTodoBtn);
+    todoDiv.appendChild(deleteTodoBtn);
 
     project.editTodos(itemID, title, date, priority, description, isCompleted);
     renderBorderOfTodos(itemID);
