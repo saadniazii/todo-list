@@ -5,6 +5,11 @@ const SidebarProjectFactory = () => {
     projectList.push(...projects);
   };
 
+  const editProject = (todoIndex, newTitle) => {
+    projectList[todoIndex].setTitle(`${newTitle}`);
+    return projectList[todoIndex];
+  };
+
   const deleteProject = (projectID) => {
     projectList = projectList.filter((item) => item.id !== projectID);
     return projectList;
@@ -15,8 +20,7 @@ const SidebarProjectFactory = () => {
   };
 
   const getProject = (projectID) => {
-    const projectFound = projectList.find((item) => item.id === projectID);
-    return projectFound;
+    return projectList.find((item) => item.id === projectID);
   };
 
   return {
@@ -25,6 +29,7 @@ const SidebarProjectFactory = () => {
     deleteProject,
     allProjects,
     getProject,
+    editProject,
   };
 };
 
