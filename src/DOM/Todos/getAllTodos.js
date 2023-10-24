@@ -6,9 +6,9 @@ export const getAllTodos = (itemID) => {
   mainBody.replaceChildren();
   if (mainBody.childNodes.length === 0) {
     const getProject = sidebar.getProject(itemID);
-    if (getProject.length === 0) {
-      return;
+
+    if (Array.isArray(getProject) && getProject.length > 0) {
+      renderTodo(getProject);
     }
-    renderTodo(getProject);
   }
 };
