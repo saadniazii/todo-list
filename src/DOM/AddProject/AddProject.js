@@ -14,9 +14,9 @@ const AddProject = () => {
   const projectId = projectIdCounter++;
 
   let project = ProjectFactory(getAddProjectBtnValue, projectId);
+  sidebar.addProjects(project);
   const projectArray = sidebar.projectList;
   addInLocalStorage(projectArray);
-  sidebar.addProjects(project);
   return {
     project,
   };
@@ -25,14 +25,14 @@ const AddProject = () => {
 window.onload = function () {
   const storedArray = JSON.parse(localStorage.getItem("project_array"));
   if (storedArray !== "undefined" && storedArray !== "null") {
-    const sidebar = document.querySelector(".sidebar");
-
+    storedArray.forEach((item) => {
+      sidebar.addProjects(item);
+    });
+    const sidebarHTML = document.querySelector(".sidebar");
     storedArray.forEach((item, index) => {
       const projectsDiv = createProjectElement(item, index);
-      console.log("item", item);
-      sidebar.append(projectsDiv);
+      sidebarHTML.append(projectsDiv);
     });
   }
 };
-
 export default AddProject;
