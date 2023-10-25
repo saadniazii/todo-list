@@ -11,6 +11,8 @@ export const createProjectElement = (item, index) => {
   deleteProjectBtn.addEventListener("click", () => {
     const getSpecific = sidebarHTML.querySelector(`[data-id="${index}"]`);
     sidebar.deleteProject(index);
+    localStorage.removeItem("project_array");
+
     getSpecific.remove();
   });
 
