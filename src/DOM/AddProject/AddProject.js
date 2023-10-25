@@ -1,10 +1,6 @@
 import ProjectFactory from "../../projectFactory/projectFactory";
 import { sidebar } from "../../sidebarFactory/sidebarFactory";
-import {
-  addInLocalStorage,
-  getFromLocalStorage,
-} from "../LocalStorage/addInLocalStorage";
-import createElement from "../../utils/createElement";
+import { addInLocalStorage } from "../LocalStorage/addInLocalStorage";
 import { createProjectElement } from "../DisplayProjectsInSidebar/createProjectElement";
 
 let projectIdCounter = 0;
