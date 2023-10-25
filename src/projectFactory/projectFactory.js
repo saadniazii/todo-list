@@ -43,6 +43,7 @@ const ProjectFactory = (projectName, projectID) => {
     editTodos,
     deleteTodo,
     completedTodos,
+    myProject,
   };
 };
 

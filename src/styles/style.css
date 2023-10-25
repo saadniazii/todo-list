@@ -293,6 +293,7 @@ button:active {
   background-color: azure;
   padding: 10px;
   gap: 5px;
+  cursor: pointer;
 }
 
 .edited-projects-div{
