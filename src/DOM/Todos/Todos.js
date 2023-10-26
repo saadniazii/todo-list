@@ -3,6 +3,7 @@ import TodoFactory from "../../todoFactory/todoFactory";
 import createElement from "../../utils/createElement";
 import { isTodoCompleted, renderBorderOfTodos, renderTodo } from "./renderTodo";
 import { deleteTodo } from "./deleteTodo";
+import { addTodoInLocalStorage } from "../LocalStorage/addInLocalStorage";
 
 const addTodoHandler = (event) => addTodo(event);
 let projectToAddTodo = null;
@@ -23,8 +24,8 @@ const addTodo = () => {
 
   const newTodo = TodoFactory(title, date, priority, description, isCompleted);
   projectToAddTodo.addTodos(newTodo);
-
   renderTodo(projectToAddTodo);
+  addTodoInLocalStorage(projectToAddTodo);
 };
 
 export const editTodo = (itemID, project) => {
@@ -159,6 +160,15 @@ export const editTodo = (itemID, project) => {
   todoDiv.appendChild(descriptionTextarea);
   todoDiv.appendChild(saveButton);
   mainBody.appendChild(todoDiv);
+};
+
+window.onload = function () {
+  const storedArray = JSON.parse(localStorage.getItem("todo_array"));
+  if (Array.isArray(storedArray) && storedArray.length > 0) {
+    storedArray.forEach((project) => {
+      renderTodo(project);
+    });
+  }
 };
 
 export default Todos;
