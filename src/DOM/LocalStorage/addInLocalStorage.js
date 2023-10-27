@@ -4,6 +4,7 @@ export const addInLocalStorage = (projectArray) => {
 };
 
 export const addTodoInLocalStorage = (todoArray) => {
-  let projectJSON = JSON.stringify(todoArray);
-  localStorage.setItem(`todo_array`, projectJSON);
+  const existingData = JSON.parse(localStorage.getItem("todo_array")) || [];
+  const updatedData = existingData.concat(todoArray);
+  localStorage.setItem("todo_array", JSON.stringify(updatedData));
 };

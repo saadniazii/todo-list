@@ -1,7 +1,12 @@
 import { sidebar } from "../../sidebarFactory/sidebarFactory";
 import TodoFactory from "../../todoFactory/todoFactory";
 import createElement from "../../utils/createElement";
-import { isTodoCompleted, renderBorderOfTodos, renderTodo } from "./renderTodo";
+import {
+  isTodoCompleted,
+  renderBorderOfTodos,
+  renderSingleTodo,
+  renderTodo,
+} from "./renderTodo";
 import { deleteTodo } from "./deleteTodo";
 import { addTodoInLocalStorage } from "../LocalStorage/addInLocalStorage";
 
@@ -162,13 +167,18 @@ export const editTodo = (itemID, project) => {
   mainBody.appendChild(todoDiv);
 };
 
-window.onload = function () {
-  const storedArray = JSON.parse(localStorage.getItem("todo_array"));
-  if (Array.isArray(storedArray) && storedArray.length > 0) {
-    storedArray.forEach((project) => {
-      renderTodo(project);
+window.addEventListener("load", () => {
+  const selectedProject = JSON.parse(localStorage.getItem("todo_array")) || [];
+
+  if (Array.isArray(selectedProject) && selectedProject.length >= 0) {
+    selectedProject.forEach((project, index) => {
+      sidebar.addProjects(project);
+      const getSpecific = sidebar.getProject(project.id);
+
+      if (getSpecific && Array.isArray(getSpecific.myProject)) {
+        return getSpecific.myProject.map((item) => console.log("item", item));
+      }
     });
   }
-};
-
+});
 export default Todos;

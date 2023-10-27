@@ -2,7 +2,7 @@ import createElement from "../../utils/createElement";
 import { deleteTodo } from "./deleteTodo";
 import { editTodo } from "./Todos";
 
-const renderSingleTodo = (todo, index, project) => {
+export const renderSingleTodo = (todo, index, project) => {
   const todoDiv = createElement("div", "todo-div");
   const mainBody = document.querySelector(".main-body");
 
