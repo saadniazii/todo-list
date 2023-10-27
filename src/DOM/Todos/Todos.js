@@ -15,7 +15,7 @@ let projectToAddTodo = null;
 
 const Todos = (itemID) => {
   const addTodoBtn = document.querySelector(".addTodoBtn");
-  projectToAddTodo = sidebar.getProject(itemID);
+  projectToAddTodo = sidebar.getProject(itemID); //this part
   addTodoBtn.removeEventListener("click", addTodoHandler);
   addTodoBtn.addEventListener("click", addTodoHandler);
 };
@@ -28,9 +28,9 @@ const addTodo = () => {
   const isCompleted = document.querySelector("#isCompleted").value;
 
   const newTodo = TodoFactory(title, date, priority, description, isCompleted);
-  projectToAddTodo.addTodos(newTodo);
+  projectToAddTodo.addTodos(newTodo); //this part
   renderTodo(projectToAddTodo);
-  addTodoInLocalStorage(projectToAddTodo);
+  addTodoInLocalStorage(projectToAddTodo); //this is whats being added in the todo local storage.
 };
 
 export const editTodo = (itemID, project) => {
@@ -168,16 +168,13 @@ export const editTodo = (itemID, project) => {
 };
 
 window.addEventListener("load", () => {
+  //this is the todo local storage window event listener
   const selectedProject = JSON.parse(localStorage.getItem("todo_array")) || [];
 
   if (Array.isArray(selectedProject) && selectedProject.length >= 0) {
     selectedProject.forEach((project, index) => {
       sidebar.addProjects(project);
       const getSpecific = sidebar.getProject(project.id);
-
-      if (getSpecific && Array.isArray(getSpecific.myProject)) {
-        return getSpecific.myProject.map((item) => console.log("item", item));
-      }
     });
   }
 });
