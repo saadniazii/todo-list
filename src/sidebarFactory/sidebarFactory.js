@@ -23,6 +23,15 @@ const SidebarProjectFactory = () => {
     return projectList.find((item) => item.id === projectID);
   };
 
+  const getProjectList = () => projectList;
+
+  const toJSON = () => {
+    return {
+      projectList,
+      // getProjectList,
+    };
+  };
+
   return {
     projectList,
     addProjects,
@@ -30,6 +39,8 @@ const SidebarProjectFactory = () => {
     allProjects,
     getProject,
     editProject,
+    getProjectList,
+    toJSON,
   };
 };
 

@@ -19,11 +19,10 @@ const AddProject = () => {
 };
 
 window.onload = function () {
-  const storedArray = JSON.parse(localStorage.getItem("project_array"));
-  console.log("storedArray", storedArray);
-  if (storedArray !== "undefined" && storedArray !== null) {
-    storedArray.forEach((item) => {
-      console.log("item in stored array", item);
+  const projectArray = JSON.parse(localStorage.getItem("project_array"));
+  console.log("storedArray", projectArray);
+  if (projectArray !== "undefined" && projectArray !== null) {
+    projectArray.forEach((item) => {
       // item.addTodos = function (todos) {
       //   item.myProject = [...item.myProject, todos];
       // };
