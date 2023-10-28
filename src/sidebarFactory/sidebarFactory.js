@@ -28,7 +28,7 @@ const SidebarProjectFactory = () => {
   const toJSON = () => {
     return {
       projectList,
-      // getProjectList,
+      // getProjectList ,
     };
   };
 
