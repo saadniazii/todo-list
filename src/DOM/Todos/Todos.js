@@ -1,14 +1,8 @@
 import { sidebar } from "../../sidebarFactory/sidebarFactory";
 import TodoFactory from "../../todoFactory/todoFactory";
 import createElement from "../../utils/createElement";
-import {
-  isTodoCompleted,
-  renderBorderOfTodos,
-  renderSingleTodo,
-  renderTodo,
-} from "./renderTodo";
+import { isTodoCompleted, renderBorderOfTodos, renderTodo } from "./renderTodo";
 import { deleteTodo } from "./deleteTodo";
-import { addTodoInLocalStorage } from "../LocalStorage/addInLocalStorage";
 
 const addTodoHandler = (event) => addTodo(event);
 let projectToAddTodo = null;
@@ -30,7 +24,6 @@ const addTodo = () => {
   const newTodo = TodoFactory(title, date, priority, description, isCompleted);
   projectToAddTodo.addTodos(newTodo); //this part
   renderTodo(projectToAddTodo);
-  addTodoInLocalStorage(projectToAddTodo); //this is whats being added in the todo local storage.
 };
 
 export const editTodo = (itemID, project) => {
@@ -168,14 +161,13 @@ export const editTodo = (itemID, project) => {
 };
 
 window.addEventListener("load", () => {
-  //this is the todo local storage window event listener
-  const selectedProject = JSON.parse(localStorage.getItem("todo_array")) || [];
+  const selectedProject =
+    JSON.parse(localStorage.getItem("project_array")) || [];
 
-  if (Array.isArray(selectedProject) && selectedProject.length >= 0) {
-    selectedProject.forEach((project, index) => {
-      sidebar.addProjects(project);
-      const getSpecific = sidebar.getProject(project.id);
-    });
-  }
+  selectedProject.allTodos = function () {
+    return selectedProject?.myProject?.map((item) => item);
+  };
+
+  console.log("selectedProject", selectedProject);
 });
 export default Todos;

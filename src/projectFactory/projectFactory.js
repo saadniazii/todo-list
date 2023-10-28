@@ -1,6 +1,8 @@
 const ProjectFactory = (projectName, projectID) => {
   let myProject = [];
 
+  const getMyProject = () => myProject;
+
   const addTodos = (todos) => {
     myProject = [...myProject, todos];
   };
@@ -44,6 +46,7 @@ const ProjectFactory = (projectName, projectID) => {
     deleteTodo,
     completedTodos,
     myProject,
+    getMyProject,
   };
 };
 

@@ -1,30 +1,34 @@
 const TodoFactory = (title, description, dueDate, priority, isCompleted) => {
-  let _title = title;
-  let _description = description;
-  let _dueDate = dueDate;
-  let _priority = priority;
-  let _isCompleted = isCompleted;
-
-  const getTitle = () => _title;
-  const getDescription = () => _description;
-  const getDueDate = () => _dueDate;
-  const getPriority = () => _priority;
-  const getIsCompleted = () => _isCompleted;
+  const getTitle = () => title;
+  const getDescription = () => description;
+  const getDueDate = () => dueDate;
+  const getPriority = () => priority;
+  const getIsCompleted = () => isCompleted;
 
   const setTitle = (newTitle) => {
-    return (_title = newTitle);
+    return (title = newTitle);
   };
   const setDescription = (newDescription) => {
-    return (_description = newDescription);
+    return (description = newDescription);
   };
   const setDueDate = (newDueDate) => {
-    return (_dueDate = newDueDate);
+    return (dueDate = newDueDate);
   };
   const setPriority = (newPriority) => {
-    return (_priority = newPriority);
+    return (priority = newPriority);
   };
   const setIsCompleted = (newIsCompleted) => {
-    return (_isCompleted = newIsCompleted);
+    return (isCompleted = newIsCompleted);
+  };
+
+  const getAllValues = () => {
+    return {
+      title,
+      description,
+      dueDate,
+      priority,
+      isCompleted,
+    };
   };
 
   return {
@@ -38,6 +42,7 @@ const TodoFactory = (title, description, dueDate, priority, isCompleted) => {
     setDueDate,
     setPriority,
     setIsCompleted,
+    getAllValues,
   };
 };
 
