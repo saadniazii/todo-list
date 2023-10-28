@@ -21,7 +21,7 @@ const TodoFactory = (title, description, dueDate, priority, isCompleted) => {
     return (isCompleted = newIsCompleted);
   };
 
-  const getAllValues = () => {
+  const toJSON = () => {
     return {
       title,
       description,
@@ -42,7 +42,7 @@ const TodoFactory = (title, description, dueDate, priority, isCompleted) => {
     setDueDate,
     setPriority,
     setIsCompleted,
-    getAllValues,
+    toJSON,
   };
 };
 

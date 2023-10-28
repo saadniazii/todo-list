@@ -3,8 +3,8 @@ export const addInLocalStorage = (projectArray) => {
   localStorage.setItem(`project_array`, projectJSON);
 };
 
-export const addTodoInLocalStorage = (todoArray) => {
-  const existingData = JSON.parse(localStorage.getItem("todo_array")) || [];
-  const updatedData = existingData.concat(todoArray);
-  localStorage.setItem("todo_array", JSON.stringify(updatedData));
+export const addTodoInLocalStorage = (todos) => {
+  // const existingData = JSON.parse(localStorage.getItem("todo_array")) || [];
+  // const updatedData = existingData.concat(todos);
+  // localStorage.setItem("todo_array", JSON.stringify(updatedData));
 };

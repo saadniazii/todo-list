@@ -3,13 +3,14 @@ import TodoFactory from "../../todoFactory/todoFactory";
 import createElement from "../../utils/createElement";
 import { isTodoCompleted, renderBorderOfTodos, renderTodo } from "./renderTodo";
 import { deleteTodo } from "./deleteTodo";
+import { addTodoInLocalStorage } from "../LocalStorage/addInLocalStorage";
 
 const addTodoHandler = (event) => addTodo(event);
 let projectToAddTodo = null;
 
 const Todos = (itemID) => {
   const addTodoBtn = document.querySelector(".addTodoBtn");
-  projectToAddTodo = sidebar.getProject(itemID); //this part
+  projectToAddTodo = sidebar.getProject(itemID);
   addTodoBtn.removeEventListener("click", addTodoHandler);
   addTodoBtn.addEventListener("click", addTodoHandler);
 };
@@ -22,7 +23,8 @@ const addTodo = () => {
   const isCompleted = document.querySelector("#isCompleted").value;
 
   const newTodo = TodoFactory(title, date, priority, description, isCompleted);
-  projectToAddTodo.addTodos(newTodo); //this part
+  projectToAddTodo.addTodos(newTodo);
+  addTodoInLocalStorage(newTodo);
   renderTodo(projectToAddTodo);
 };
 
@@ -163,10 +165,6 @@ export const editTodo = (itemID, project) => {
 window.addEventListener("load", () => {
   const selectedProject =
     JSON.parse(localStorage.getItem("project_array")) || [];
-
-  selectedProject.allTodos = function () {
-    return selectedProject?.myProject?.map((item) => item);
-  };
 
   console.log("selectedProject", selectedProject);
 });

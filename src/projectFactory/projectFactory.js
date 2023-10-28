@@ -37,6 +37,16 @@ const ProjectFactory = (projectName, projectID) => {
     });
   };
 
+  const toJSON = () => {
+    return {
+      addTodos,
+      editTodos,
+      deleteTodo,
+      allTodos,
+      completedTodos,
+    };
+  };
+
   return {
     name: projectName,
     id: projectID,
@@ -45,8 +55,8 @@ const ProjectFactory = (projectName, projectID) => {
     editTodos,
     deleteTodo,
     completedTodos,
-    myProject,
     getMyProject,
+    toJSON,
   };
 };
 
