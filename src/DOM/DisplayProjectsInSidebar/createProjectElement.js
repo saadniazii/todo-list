@@ -1,7 +1,8 @@
 import createElement from "../../utils/createElement";
 import { sidebar } from "../../sidebarFactory/sidebarFactory";
 import { passProject, toggleClickBehavior } from "./displayProjectsInSidebar";
-export const createProjectElement = (item, index) => {
+export const createProjectElement = (item) => {
+  console.log("item in create project element", item);
   const sidebarHTML = document.querySelector(".sidebar");
 
   const projectsDiv = createElement("div", "projects-div");
@@ -9,8 +10,8 @@ export const createProjectElement = (item, index) => {
   const span = createElement("span");
 
   deleteProjectBtn.addEventListener("click", () => {
-    const getSpecific = sidebarHTML.querySelector(`[data-id="${index}"]`);
-    sidebar.deleteProject(index);
+    const getSpecific = sidebarHTML.querySelector(`[data-id="${item.id}"]`);
+    sidebar.deleteProject(item.id);
     localStorage.removeItem("project_array");
 
     getSpecific.remove();
@@ -18,7 +19,7 @@ export const createProjectElement = (item, index) => {
 
   span.textContent = item.name;
   projectsDiv.append(span, deleteProjectBtn);
-  projectsDiv.dataset.id = index;
+  projectsDiv.dataset.id = item.id;
   deleteProjectBtn.textContent = "Delete";
 
   projectsDiv.addEventListener("click", () => passProject(item.id));
