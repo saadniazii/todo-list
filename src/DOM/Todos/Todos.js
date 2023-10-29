@@ -4,6 +4,7 @@ import createElement from "../../utils/createElement";
 import { isTodoCompleted, renderBorderOfTodos, renderTodo } from "./renderTodo";
 import { deleteTodo } from "./deleteTodo";
 import { addTodoInLocalStorage } from "../LocalStorage/addInLocalStorage";
+import ProjectFactory from "../../projectFactory/projectFactory";
 
 const addTodoHandler = (event) => addTodo(event);
 let projectToAddTodo = null;
@@ -24,7 +25,7 @@ const addTodo = () => {
 
   const newTodo = TodoFactory(title, date, priority, description, isCompleted);
   projectToAddTodo.addTodos(newTodo);
-  addTodoInLocalStorage(newTodo);
+  addTodoInLocalStorage(projectToAddTodo);
   renderTodo(projectToAddTodo);
 };
 
@@ -163,9 +164,28 @@ export const editTodo = (itemID, project) => {
 };
 
 window.addEventListener("load", () => {
-  const selectedProject =
-    JSON.parse(localStorage.getItem("project_array")) || [];
+  const todoArray = JSON.parse(localStorage.getItem("todo_array"));
+  const projectArray = JSON.parse(localStorage.getItem("project_array"));
+  let projectToAddTodo = null;
 
-  console.log("selectedProject", selectedProject);
+  projectArray.forEach((item) => {
+    projectToAddTodo = ProjectFactory(item.projectName, item.projectID);
+  });
+
+  todoArray.myProject.forEach((item) => {
+    const newTodos = TodoFactory(
+      item.title,
+      item.description,
+      item.dueDate,
+      item.priority,
+      item.isCompleted,
+    );
+
+    if (projectToAddTodo !== null) {
+      projectToAddTodo.addTodos(newTodos);
+    }
+
+    renderTodo(projectToAddTodo);
+  });
 });
 export default Todos;

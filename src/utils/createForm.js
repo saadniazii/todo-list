@@ -1,5 +1,3 @@
-import AddProject from "../DOM/AddProject/AddProject";
-
 const createForm = () => {
   const todoForm = document.getElementById("todo-form");
 

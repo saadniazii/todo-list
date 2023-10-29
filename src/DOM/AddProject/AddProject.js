@@ -22,7 +22,7 @@ window.onload = function () {
   const sidebarHTML = document.querySelector(".sidebar");
   const projectArray = JSON.parse(localStorage.getItem("project_array"));
   if (projectArray !== "undefined" && projectArray !== null) {
-    projectArray.forEach((item, index) => {
+    projectArray.forEach((item) => {
       const project = ProjectFactory(item.projectName, item.projectID);
       sidebar.addProjects(project);
       const projectsDiv = createProjectElement(project);
