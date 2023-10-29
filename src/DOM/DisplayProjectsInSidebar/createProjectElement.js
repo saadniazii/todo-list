@@ -2,7 +2,6 @@ import createElement from "../../utils/createElement";
 import { sidebar } from "../../sidebarFactory/sidebarFactory";
 import { passProject, toggleClickBehavior } from "./displayProjectsInSidebar";
 export const createProjectElement = (item) => {
-  console.log("item in create project element", item);
   const sidebarHTML = document.querySelector(".sidebar");
 
   const projectsDiv = createElement("div", "projects-div");
@@ -16,15 +15,11 @@ export const createProjectElement = (item) => {
 
     getSpecific.remove();
   });
-
   span.textContent = item.name;
   projectsDiv.append(span, deleteProjectBtn);
   projectsDiv.dataset.id = item.id;
   deleteProjectBtn.textContent = "Delete";
-
   projectsDiv.addEventListener("click", () => passProject(item.id));
-
   toggleClickBehavior(projectsDiv, item);
-
   return projectsDiv;
 };
