@@ -25,7 +25,7 @@ const addTodo = () => {
 
   const newTodo = TodoFactory(title, date, priority, description, isCompleted);
   projectToAddTodo.addTodos(newTodo);
-  addTodoInLocalStorage(projectToAddTodo);
+  // addTodoInLocalStorage(projectToAddTodo);
   renderTodo(projectToAddTodo);
 };
 
@@ -164,28 +164,28 @@ export const editTodo = (itemID, project) => {
 };
 
 window.addEventListener("load", () => {
-  const todoArray = JSON.parse(localStorage.getItem("todo_array"));
-  const projectArray = JSON.parse(localStorage.getItem("project_array"));
-  let projectToAddTodo = null;
-
-  projectArray.forEach((item) => {
-    projectToAddTodo = ProjectFactory(item.projectName, item.projectID);
-  });
-
-  todoArray.myProject.forEach((item) => {
-    const newTodos = TodoFactory(
-      item.title,
-      item.description,
-      item.dueDate,
-      item.priority,
-      item.isCompleted,
-    );
-
-    if (projectToAddTodo !== null) {
-      projectToAddTodo.addTodos(newTodos);
-    }
-
-    renderTodo(projectToAddTodo);
-  });
+  // const todoArray = JSON.parse(localStorage.getItem("todo_array"));
+  // const projectArray = JSON.parse(localStorage.getItem("project_array"));
+  // let projectToAddTodo = null;
+  //
+  // projectArray.forEach((item) => {
+  //   projectToAddTodo = ProjectFactory(item.projectName, item.projectID);
+  // });
+  //
+  // todoArray.myProject.forEach((item) => {
+  //   const newTodos = TodoFactory(
+  //     item.title,
+  //     item.description,
+  //     item.dueDate,
+  //     item.priority,
+  //     item.isCompleted,
+  //   );
+  //
+  //   if (projectToAddTodo !== null) {
+  //     projectToAddTodo.addTodos(newTodos);
+  //   }
+  //
+  //   renderTodo(projectToAddTodo);
+  // });
 });
 export default Todos;
