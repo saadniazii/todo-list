@@ -40,7 +40,6 @@ export const toggleClickBehavior = (projectsDiv, item) => {
     if (isListenerAttached) {
       projectsDiv.removeEventListener("click", clickHandler);
     } else {
-      console.log("item in the else", item);
       passProjectID(item.id);
       projectsDiv.addEventListener("click", clickHandler);
     }
